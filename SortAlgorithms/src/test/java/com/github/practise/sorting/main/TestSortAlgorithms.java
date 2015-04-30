@@ -16,7 +16,7 @@ public class TestSortAlgorithms {
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         for (SortAlgorithm sortAlgorithm : (new SortAlgorithms()).getSortAlgorithms()) {
             for (ArrayType type : ArrayType.values()) {
-                int [] array = arrayBuilder.buildArrayProducer(type, ArraySize.HUNDRED_THOUSANDS).produce();
+                int [] array = arrayBuilder.buildArrayProducer(type, ArraySize.THOUSAND).produce();
                 sortAlgorithm.sort(array);
                 Assert.assertTrue("Algorithm " + sortAlgorithm.getName() + "is failed!", isSorted(array));
             }

@@ -1,6 +1,5 @@
 package com.github.practice.sorting.utils.producer;
 
-
 public class AscArrayProducer implements ArrayProducer {
 
     private int size;
