@@ -4,6 +4,11 @@
 	<groupId>SortAlgorithms</groupId>
 	<artifactId>SortAlgorithms</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	
+	<properties>
+        <spring.target.version>4.1.6.RELEASE</spring.target.version>
+    </properties>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -15,11 +20,34 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+			<!-- Static Code Analysis Tools -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+							<goal>cpd-check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 
-	<!-- JUnit -->
 	<dependencies>
+
+		<!-- SPRING -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.target.version}</version>
+		</dependency>
+
+		<!-- JUnit -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -38,6 +66,12 @@
 			<version>1.7.12</version>
 		</dependency>
 
+		<!-- JFREECHART -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>1.0.19</version>
+		</dependency>
 
 	</dependencies>
 

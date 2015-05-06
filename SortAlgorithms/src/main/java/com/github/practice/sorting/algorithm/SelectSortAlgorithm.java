@@ -1,4 +1,4 @@
-package com.github.practice.sorting.algorithms;
+package com.github.practice.sorting.algorithm;
 
 public class SelectSortAlgorithm extends SortAlgorithm {
 

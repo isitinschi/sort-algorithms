@@ -6,6 +6,8 @@ public class RandomArrayProducer implements ArrayProducer {
 
     private int size;
     
+    private static final Random randomGenerator = new Random();
+    
     public RandomArrayProducer(int size) {
         this.size = size;
     }
@@ -14,8 +16,7 @@ public class RandomArrayProducer implements ArrayProducer {
     public int[] produce() {
         int [] array = new int [size];
         
-        for (int i = 0; i < size; ++i) {
-            Random randomGenerator = new Random();
+        for (int i = 0; i < size; ++i) {            
             array[i] = randomGenerator.nextInt(size);
         }
         

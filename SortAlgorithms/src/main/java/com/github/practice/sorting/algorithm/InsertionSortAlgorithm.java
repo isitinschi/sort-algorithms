@@ -1,12 +1,16 @@
-package com.github.practice.sorting.algorithms;
+package com.github.practice.sorting.algorithm;
 
 public class InsertionSortAlgorithm extends SortAlgorithm {
 
     @Override
     protected void doSort(int[] array) {
-        for (int i = 1; i < array.length; ++i) {
+    	insertionSort(array, 0, array.length - 1);
+    }
+    
+    public void insertionSort(int[] array, int left, int right) {
+    	for (int i = left + 1; i <= right; ++i) {
         	int j = i;
-        	while (j > 0 && array[j] < array[j - 1]) {
+        	while (j > left && array[j] < array[j - 1]) {
         		swap(array, j, j - 1);
         		--j;
         	}

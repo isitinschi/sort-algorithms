@@ -1,7 +1,7 @@
-package com.github.practice.sorting.algorithms;
+package com.github.practice.sorting.algorithm;
 
 public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
-
+	
 	@Override
 	protected int partition(int[] array, int start, int end) {
 		int pivotIndex = (end + start) / 2;

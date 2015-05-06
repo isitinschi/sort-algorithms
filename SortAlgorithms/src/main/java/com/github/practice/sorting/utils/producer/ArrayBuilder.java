@@ -20,6 +20,8 @@ public class ArrayBuilder {
                     arrayProducer = new AscArrayProducer(size.getValue());
                 } else if (type == ArrayType.DESC) {
                     arrayProducer = new DescArrayProducer(size.getValue());
+                } else if (type == ArrayType.DUPLICATED) {
+                    arrayProducer = new DuplicatedArrayProducer(size.getValue());
                 }
                 arrayProducerCache.get(type).put(size, arrayProducer);
             }
