@@ -11,9 +11,10 @@ public abstract class SortAlgorithm {
 
 	protected abstract void doSort(int[] array);
 
-	public abstract String getName();
+	public abstract SortAlgorithmType getType();
 
 	public Performance sort(int[] array) {
+		startTime = endTime = swaps = comparisons = 0;
 		startTime = System.currentTimeMillis();
 		doSort(array);
 		endTime = System.currentTimeMillis();
@@ -22,7 +23,7 @@ public abstract class SortAlgorithm {
 	}
 
 	private Performance calculatePerformance() {
-		return PerformanceBuilder.newInstance().setName(getName())
+		return PerformanceBuilder.newInstance().setType(getType())
 				.setTime(endTime - startTime).setSwaps(swaps)
 				.setComparisons(comparisons).build();
 	}

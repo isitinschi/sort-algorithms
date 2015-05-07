@@ -1,10 +1,11 @@
 package com.github.practice.sorting.algorithm.performance;
 
 import com.github.practice.sorting.algorithm.Performance;
+import com.github.practice.sorting.algorithm.SortAlgorithmType;
 
 public class PerformanceBuilder {
 
-	private String name;
+	private SortAlgorithmType type;
 	private long time;
 	private long swaps;
 	private long comparisons;
@@ -15,8 +16,8 @@ public class PerformanceBuilder {
 		return new PerformanceBuilder();
 	}
 	
-	public PerformanceBuilder setName(String name) {
-		this.name = name;
+	public PerformanceBuilder setType(SortAlgorithmType type) {
+		this.type = type;
 		return this;
 	}
 	
@@ -34,8 +35,8 @@ public class PerformanceBuilder {
 		this.comparisons = comparisons;
 		return this;
 	}
-	
+
 	public Performance build() {
-		return new Performance(name, time, swaps, comparisons);
+		return new Performance(type, time, swaps, comparisons);
 	}
 }

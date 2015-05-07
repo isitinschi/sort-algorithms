@@ -6,8 +6,8 @@ public class BubbleSortAlgorithm extends SortAlgorithm {
     protected void doSort(int[] array) {
         for (int i = 0; i < array.length; ++i) {
             boolean swapFlag = false;
-            for (int j = 0; j < array.length - i - 1; ++j) {
-                if (array[j] > array[j + 1]) {
+            for (int j = 0; j < array.length - i - 1; ++j) {            	
+                if (less(array[j + 1], array[j])) {
                     swap(array, j, j + 1);
                     swapFlag = true;
                 }
@@ -19,8 +19,8 @@ public class BubbleSortAlgorithm extends SortAlgorithm {
     }
 
     @Override
-    public String getName() {
-        return "Bubble sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.BUBBLE_SORT;
     }
 
 }

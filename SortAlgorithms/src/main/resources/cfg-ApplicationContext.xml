@@ -22,48 +22,14 @@
     <bean id="sortAlgorithms" class="java.util.ArrayList">
 	    <constructor-arg>
 	        <list>
-<!-- 	            <ref bean="heapSortAlgorithm" /> -->
-<!-- 	            <ref bean="dualPivotQuickSortAlgorithm" /> -->
-<!-- 	            <ref bean="threeWayPartitionQuickSortAlgorithm" /> -->
-<!-- 	            <ref bean="quickSortAlgorithm" /> -->
+               <ref bean="threeWayPartitionQuickSortAlgorithm" />
+	            <ref bean="quickSortAlgorithm" />
 	            <ref bean="mergeSortAlgorithm" />
 	            <ref bean="insertionSortAlgorithm" />
 	            <ref bean="selectSortAlgorithm" />
 	            <ref bean="bubbleSortAlgorithm" />
 	        </list>
 	    </constructor-arg>
-    </bean>
-    
-    <!-- CHART CONTROLLER -->
-    <bean id="chartController" class="com.github.practice.sorting.chart.controller.ChartController">
-        <property name="timePanel" ref="timePanel" />
-        <property name="swapsPanel" ref="swapsPanel" />
-        <property name="comparisonsPanel" ref="comparisonsPanel" />
-    </bean>
-    
-    <!-- CHART VIEW -->
-    <bean id="timePanel" class="com.github.practice.sorting.chart.view.panel.PerformancePanel" />
-    <bean id="swapsPanel" class="com.github.practice.sorting.chart.view.panel.PerformancePanel" />
-    <bean id="comparisonsPanel" class="com.github.practice.sorting.chart.view.panel.PerformancePanel" />
-    
-    <bean id="chartViewTabbedPane" class="com.github.practice.sorting.chart.view.pane.ChartViewTabbedPane" >
-        <constructor-arg name="timePanel" ref="timePanel" />
-        <constructor-arg name="swapsPanel" ref="swapsPanel" />
-        <constructor-arg name="comparisonsPanel" ref="comparisonsPanel" />
-    </bean>
-    
-    <bean id="chartView" class="com.github.practice.sorting.chart.view.ChartView" >
-        <constructor-arg name="tabbedPane" ref="chartViewTabbedPane" />
-    </bean>
-    
-    <!-- PERFORMANCE CALCULATOR -->
-    <bean id="performanceCalculator" class="com.github.practice.sorting.main.PerformanceCalculator" >
-        <property name="sortAlgorithms" ref="sortAlgorithms" />
-        <property name="listeners">
-            <list>
-                <ref bean="chartController"/>
-            </list>
-        </property>
     </bean>
 
 </beans>

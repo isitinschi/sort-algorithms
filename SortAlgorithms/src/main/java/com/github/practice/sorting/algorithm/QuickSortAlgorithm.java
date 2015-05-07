@@ -1,10 +1,11 @@
 package com.github.practice.sorting.algorithm;
 
-public class QuickSortAlgorithm extends SortAlgorithm {
+import org.springframework.beans.factory.annotation.Autowired;
 
-	private static final int INSERTION_SORT_THRESHOLD = 47;
+public class QuickSortAlgorithm extends SortAlgorithm {
 	
-	private InsertionSortAlgorithm insertionSortAlgorithm = new InsertionSortAlgorithm();
+	@Autowired
+	private InsertionSortAlgorithm insertionSortAlgorithm;
 	
     @Override
     protected void doSort(int[] array) {
@@ -12,10 +13,7 @@ public class QuickSortAlgorithm extends SortAlgorithm {
     }
 
     protected void quicksort(int[] array, int left, int right) {
-    	int length = right - left + 1;
-		if (length < INSERTION_SORT_THRESHOLD) {
-			insertionSortAlgorithm.insertionSort(array, left, right);
-		} else {    	
+    	if (left < right) {
 			int pivot = partition(array, left, right);
 			quicksort(array, left, pivot - 1);
 			quicksort(array, pivot + 1, right);
@@ -30,7 +28,7 @@ public class QuickSortAlgorithm extends SortAlgorithm {
 		int storeIndex = left;
 		
 		for (int i = left; i < right; ++i) {
-			if (array[i] <= pivotValue) {
+			if (!less(pivotValue, array[i])) {
 				swap(array, i, storeIndex);
 				++storeIndex;
 			}
@@ -42,8 +40,13 @@ public class QuickSortAlgorithm extends SortAlgorithm {
 	}
 
 	@Override
-    public String getName() {
-        return "Quick sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.QUICK_SORT;
     }
+	
+	public void setInsertionSortAlgorithm(
+			InsertionSortAlgorithm insertionSortAlgorithm) {
+		this.insertionSortAlgorithm = insertionSortAlgorithm;
+	}
 
 }

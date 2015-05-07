@@ -14,6 +14,7 @@ import org.jfree.data.UnknownKeyException;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
+import com.github.practice.sorting.algorithm.SortAlgorithmType;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
 @SuppressWarnings("serial")
@@ -24,20 +25,20 @@ public class PerformancePanel extends JPanel {
 	private XYSeriesCollection randomData = new XYSeriesCollection();
 	private XYSeriesCollection duplicatedData = new XYSeriesCollection();
 
-	public PerformancePanel() {
+	public PerformancePanel(String name) {
 		setLayout(new GridLayout(2, 2));
 		
-		add(geChart("ASC", ascData));
-		add(geChart("DESC", descData));
-		add(geChart("RANDOM", randomData));
-		add(geChart("DUPLICATED", duplicatedData));
+		add(geChart(name, "ASC", ascData));
+		add(geChart(name, "DESC", descData));
+		add(geChart(name, "RANDOM", randomData));
+		add(geChart(name, "DUPLICATED", duplicatedData));
 	}
 	
-	private ChartPanel geChart(String name, XYSeriesCollection data) {
+	private ChartPanel geChart(String name, String type, XYSeriesCollection data) {
 		final JFreeChart chart = ChartFactory.createXYLineChart(
-			name,
-            "X", 
-            "Y", 
+			type,
+            "Array size", 
+            name, 
             data,
             PlotOrientation.VERTICAL,
             true,
@@ -55,7 +56,7 @@ public class PerformancePanel extends JPanel {
         return chartPanel;
 	}
 
-	public void addData(ArrayType type, String key, int x, long y) {
+	public void addData(String key, ArrayType type, int x, long y) {
 		XYSeriesCollection data = getDataByType(type);
 		XYSeries series;
 		try {

@@ -1,10 +1,11 @@
 package com.github.practice.sorting.algorithm;
 
-public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
+import org.springframework.beans.factory.annotation.Autowired;
 
-	private static final int INSERTION_SORT_THRESHOLD = 47;
+public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 	
-	private InsertionSortAlgorithm insertionSortAlgorithm = new InsertionSortAlgorithm();
+	@Autowired
+	private InsertionSortAlgorithm insertionSortAlgorithm;
 	
 	@Override
     protected void doSort(int[] array) {
@@ -12,10 +13,7 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
     }
 	
 	protected void quicksort(int[] array, int left, int right) {
-		int length = right - left + 1;
-		if (length < INSERTION_SORT_THRESHOLD) {
-			insertionSortAlgorithm.insertionSort(array, left, right);
-		} else {
+		if (left - right >= 5) {
     		DualPivot dualPivot = partition(array, left, right);
 			quicksort(array, left, dualPivot.lPivot - 1);
 			quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);
@@ -29,7 +27,7 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 		int gPivotIndex = lPivotIndex + (right - left) / 3;
 		int gPivotValue = array[gPivotIndex];
 		
-		if (lPivotValue > gPivotValue) {
+		if (less(gPivotValue, lPivotValue)) {
 			swap(array, lPivotIndex, gPivotIndex);
 			lPivotValue = array[lPivotIndex];
 			gPivotValue = array[gPivotIndex];
@@ -42,9 +40,9 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 		int gt = right - 1;
 		int i = left + 1;
 		while (i <= gt) {
-			if (array[i] < lPivotValue) {
+			if (less(array[i], lPivotValue)) {
 				swap(array, lt++, i++);
-			} else if (gPivotValue < array[i]) {
+			} else if (less(gPivotValue, array[i])) {
 				swap(array, i, gt--);
 			} else {
 				i++;
@@ -68,8 +66,13 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 	}
 
 	@Override
-	public String getName() {
-		return "Dual pivot partition Quick sort";
+	public SortAlgorithmType getType() {
+		return SortAlgorithmType.DUAL_PIVOT_QUICK_SORT;
+	}
+
+	public void setInsertionSortAlgorithm(
+			InsertionSortAlgorithm insertionSortAlgorithm) {
+		this.insertionSortAlgorithm = insertionSortAlgorithm;
 	}
 
 }

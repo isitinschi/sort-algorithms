@@ -1,10 +1,11 @@
 package com.github.practice.sorting.algorithm;
 
-public class MergeSortAlgorithm extends SortAlgorithm {
+import org.springframework.beans.factory.annotation.Autowired;
 
-	private static final int INSERTION_SORT_THRESHOLD = 47;
+public class MergeSortAlgorithm extends SortAlgorithm {
 	
-	private InsertionSortAlgorithm insertionSortAlgorithm = new InsertionSortAlgorithm();
+	@Autowired
+	private InsertionSortAlgorithm insertionSortAlgorithm;
 	
     @Override
     protected void doSort(int[] array) {
@@ -12,10 +13,7 @@ public class MergeSortAlgorithm extends SortAlgorithm {
     }
 
     private void mergeSort(int[] array, int left, int right) {
-    	int length = right - left + 1;
-		if (length < INSERTION_SORT_THRESHOLD) {
-			insertionSortAlgorithm.insertionSort(array, left, right - 1);
-		} else {
+    	if (right - left > 1) {
 			int middle = (right + left) / 2;
 			mergeSort(array, left, middle);
 			mergeSort(array, middle, right);
@@ -36,7 +34,7 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 				array[i] = buffer[middleIndex++];
 			} else if (middleIndex == right) {
 				array[i] = buffer[startIndex++];
-			} else if (buffer[startIndex] < buffer[middleIndex]) {
+			} else if (less(buffer[startIndex], buffer[middleIndex])) {
 				array[i] = buffer[startIndex++];
 			} else {
 				array[i] = buffer[middleIndex++];
@@ -45,8 +43,13 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 	}
 
 	@Override
-    public String getName() {
-        return "Merge sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.MERGE_SORT_ALGORITHM;
     }
+	
+	public void setInsertionSortAlgorithm(
+			InsertionSortAlgorithm insertionSortAlgorithm) {
+		this.insertionSortAlgorithm = insertionSortAlgorithm;
+	}
 
 }

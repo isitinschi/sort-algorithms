@@ -7,7 +7,7 @@ public class SelectSortAlgorithm extends SortAlgorithm {
         for (int i = 0; i < array.length; ++i) {
         	int min = i;
             for (int j = i + 1 ; j < array.length; ++j) {
-                if (array[j] < array[min]) {
+                if (less(array[j], array[min])) {
                     min = j;
                 }
             }
@@ -18,8 +18,8 @@ public class SelectSortAlgorithm extends SortAlgorithm {
     }
 
     @Override
-    public String getName() {
-        return "Select sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.SELECT_SORT;
     }
 
 }

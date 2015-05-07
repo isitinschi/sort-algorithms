@@ -13,9 +13,9 @@ public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 		int gt = end;
 		int i = start + 1;
 		while (i <= gt) {
-			if (array[i] < pivotValue) {
+			if (less(array[i], pivotValue)) {
 				swap(array, lt++, i++);
-			} else if (array[i] > pivotValue) {
+			} else if (less(pivotValue, array[i])) {
 				swap(array, i, gt--);
 			} else {
 				++i;
@@ -26,8 +26,8 @@ public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 	}
 
 	@Override
-    public String getName() {
-        return "3-way partition Quick sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.THREE_WAY_PARTITION_QUICK_SORT;
     }
 
 }

@@ -13,8 +13,8 @@ public class HeapSortAlgorithm extends SortAlgorithm {
 	}
 
 	@Override
-    public String getName() {
-        return "Heap sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.HEAP_SORT;
     }
 
 }

@@ -26,7 +26,7 @@ public class PerformanceCalculator {
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         
         for (SortAlgorithm sortAlgorithm : sortAlgorithms) {
-        	LOGGER.info("Calculating performance for " + sortAlgorithm.getName() + ":");
+        	printLog(sortAlgorithm);        	
             for (ArraySize size : ArraySize.values()) {
                 for (ArrayType type : ArrayType.values()) {
                     int [] array = arrayBuilder.buildArrayProducer(type, size).produce();
@@ -37,7 +37,13 @@ public class PerformanceCalculator {
         }
     }
     
-    private void notifyListeners(Performance performance, ArraySize size, ArrayType type) {
+    private void printLog(SortAlgorithm sortAlgorithm) {
+    	StringBuilder logMsg = new StringBuilder("Calculating performance for ");
+    	logMsg.append(sortAlgorithm.getType().getValue());
+    	LOGGER.info(logMsg.toString());
+	}
+
+	private void notifyListeners(Performance performance, ArraySize size, ArrayType type) {
 		for (PerformanceListener listener : listeners) {
 			listener.performanceCalculated(performance, size, type);
 		}

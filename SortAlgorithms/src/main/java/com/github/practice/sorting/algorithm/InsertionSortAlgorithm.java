@@ -10,7 +10,7 @@ public class InsertionSortAlgorithm extends SortAlgorithm {
     public void insertionSort(int[] array, int left, int right) {
     	for (int i = left + 1; i <= right; ++i) {
         	int j = i;
-        	while (j > left && array[j] < array[j - 1]) {
+        	while (j > left && less(array[j], array[j - 1])) {
         		swap(array, j, j - 1);
         		--j;
         	}
@@ -18,8 +18,8 @@ public class InsertionSortAlgorithm extends SortAlgorithm {
     }
 
     @Override
-    public String getName() {
-        return "Insertion sort";
+    public SortAlgorithmType getType() {
+        return SortAlgorithmType.INSERTION_SORT;
     }
 
 }

@@ -2,29 +2,35 @@ package com.github.practise.sorting.main;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.junit.Assert;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.practice.sorting.algorithm.SortAlgorithm;
 import com.github.practice.sorting.utils.producer.ArrayBuilder;
 import com.github.practice.sorting.utils.producer.ArraySize;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:cfg-ApplicationContext.xml")
 public class TestSortAlgorithms {
 
-	@Autowired
-	private List<SortAlgorithm> sortAlgorithmsList;
+	@Resource
+	private List<SortAlgorithm> sortAlgorithms;
 	
     @Test
     public void test() {
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         ArraySize size = ArraySize.THOUSAND;
-        for (SortAlgorithm sortAlgorithm : sortAlgorithmsList) {
+        for (SortAlgorithm sortAlgorithm : sortAlgorithms) {
             for (ArrayType type : ArrayType.values()) {
                 int [] array = arrayBuilder.buildArrayProducer(type, size).produce();
                 sortAlgorithm.sort(array);
-                Assert.assertTrue("Algorithm " + sortAlgorithm.getName() + "(" + size.toString() + ", " + type.toString() + ") is failed!", isSorted(array));
+                Assert.assertTrue("Algorithm " + sortAlgorithm.getType().getValue() + "(" + size.toString() + ", " + type.toString() + ") is failed!", isSorted(array));
             }
         }
     }
@@ -39,8 +45,8 @@ public class TestSortAlgorithms {
         return true;
     }
 
-	public void setSortAlgorithmsList(List<SortAlgorithm> sortAlgorithmsList) {
-		this.sortAlgorithmsList = sortAlgorithmsList;
+	public void setSortAlgorithms(List<SortAlgorithm> sortAlgorithms) {
+		this.sortAlgorithms = sortAlgorithms;
 	}
 
 }

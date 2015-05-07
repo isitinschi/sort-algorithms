@@ -2,27 +2,27 @@ package com.github.practice.sorting.algorithm;
 
 public class Performance {
 
-	private String name;
+	private SortAlgorithmType type;
 	private long time;
 	private long swaps;
 	private long comparisons;
 	
-	public Performance(String name, long time, long swaps, long comparisons) {
+	public Performance(SortAlgorithmType type, long time, long swaps, long comparisons) {
 		super();
-		this.name = name;
+		this.type = type;
 		this.time = time;
 		this.swaps = swaps;
 		this.comparisons = comparisons;
 	}
+	
+	public SortAlgorithmType getType() {
+		return type;
+	}
 
-	public String getName() {
-		return name;
+	public void setType(SortAlgorithmType type) {
+		this.type = type;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+
 	public long getTime() {
 		return time;
 	}
@@ -38,6 +38,7 @@ public class Performance {
 	public void setSwaps(long swaps) {
 		this.swaps = swaps;
 	}
+	
 	public long getComparisons() {
 		return comparisons;
 	}
