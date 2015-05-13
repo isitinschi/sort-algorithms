@@ -12,12 +12,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.github.practice.sorting.algorithm.SortAlgorithm;
 import com.github.practice.sorting.utils.producer.ArrayBuilder;
-import com.github.practice.sorting.utils.producer.ArraySize;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:cfg-ApplicationContext.xml")
 public class TestSortAlgorithms {
+	
+	private static final int ARRAY_SIZE = 1000;
 
 	@Resource
 	private List<SortAlgorithm> sortAlgorithms;
@@ -25,12 +26,11 @@ public class TestSortAlgorithms {
     @Test
     public void test() {
         ArrayBuilder arrayBuilder = new ArrayBuilder();
-        ArraySize size = ArraySize.THOUSAND;
         for (SortAlgorithm sortAlgorithm : sortAlgorithms) {
             for (ArrayType type : ArrayType.values()) {
-                int [] array = arrayBuilder.buildArrayProducer(type, size).produce();
+                int [] array = arrayBuilder.build(type, ARRAY_SIZE);
                 sortAlgorithm.sort(array);
-                Assert.assertTrue("Algorithm " + sortAlgorithm.getType().getValue() + "(" + size.toString() + ", " + type.toString() + ") is failed!", isSorted(array));
+                Assert.assertTrue("Algorithm " + sortAlgorithm.getType().getValue() + " for array with " + ARRAY_SIZE + " " + type.toString() + " elements " + " is failed!", isSorted(array));
             }
         }
     }

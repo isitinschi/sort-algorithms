@@ -22,7 +22,9 @@
     <bean id="sortAlgorithms" class="java.util.ArrayList">
 	    <constructor-arg>
 	        <list>
-               <ref bean="threeWayPartitionQuickSortAlgorithm" />
+	            <ref bean="heapSortAlgorithm" />
+                <ref bean="threeWayPartitionQuickSortAlgorithm" />
+	            <ref bean="dualPivotQuickSortAlgorithm" />
 	            <ref bean="quickSortAlgorithm" />
 	            <ref bean="mergeSortAlgorithm" />
 	            <ref bean="insertionSortAlgorithm" />

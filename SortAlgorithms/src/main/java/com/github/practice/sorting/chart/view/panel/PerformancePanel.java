@@ -14,7 +14,6 @@ import org.jfree.data.UnknownKeyException;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import com.github.practice.sorting.algorithm.SortAlgorithmType;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
 @SuppressWarnings("serial")

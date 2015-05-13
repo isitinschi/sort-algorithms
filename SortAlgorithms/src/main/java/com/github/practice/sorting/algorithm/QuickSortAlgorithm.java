@@ -1,11 +1,6 @@
 package com.github.practice.sorting.algorithm;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class QuickSortAlgorithm extends SortAlgorithm {
-	
-	@Autowired
-	private InsertionSortAlgorithm insertionSortAlgorithm;
 	
     @Override
     protected void doSort(int[] array) {
@@ -43,10 +38,5 @@ public class QuickSortAlgorithm extends SortAlgorithm {
     public SortAlgorithmType getType() {
         return SortAlgorithmType.QUICK_SORT;
     }
-	
-	public void setInsertionSortAlgorithm(
-			InsertionSortAlgorithm insertionSortAlgorithm) {
-		this.insertionSortAlgorithm = insertionSortAlgorithm;
-	}
 
 }

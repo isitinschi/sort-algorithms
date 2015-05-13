@@ -11,10 +11,13 @@ import com.github.practice.sorting.algorithm.Performance;
 import com.github.practice.sorting.algorithm.SortAlgorithm;
 import com.github.practice.sorting.listener.PerformanceListener;
 import com.github.practice.sorting.utils.producer.ArrayBuilder;
-import com.github.practice.sorting.utils.producer.ArraySize;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
 public class PerformanceCalculator {
+	
+	private static final int INITIAL_ARRAY_SIZE = 1000;
+	private static final int FINAL_ARRAY_SIZE = 100000;
+	private static final int ARRAY_SIZE_STEP = 1000;
 	
 	private List<SortAlgorithm> sortAlgorithms;	
 	private List<PerformanceListener> listeners;
@@ -25,25 +28,26 @@ public class PerformanceCalculator {
     public void calculate() {
         ArrayBuilder arrayBuilder = new ArrayBuilder();
         
-        for (SortAlgorithm sortAlgorithm : sortAlgorithms) {
-        	printLog(sortAlgorithm);        	
-            for (ArraySize size : ArraySize.values()) {
+        for (int size = INITIAL_ARRAY_SIZE; size <= FINAL_ARRAY_SIZE; size += ARRAY_SIZE_STEP) {
+        	for (SortAlgorithm sortAlgorithm : sortAlgorithms) {
                 for (ArrayType type : ArrayType.values()) {
-                    int [] array = arrayBuilder.buildArrayProducer(type, size).produce();
+                    int [] array = arrayBuilder.build(type, size);
                     Performance performance = sortAlgorithm.sort(array);
                     notifyListeners(performance, size, type);
+                    printLog(sortAlgorithm, size, type);
                 }
             }
         }
     }
     
-    private void printLog(SortAlgorithm sortAlgorithm) {
-    	StringBuilder logMsg = new StringBuilder("Calculating performance for ");
+    private void printLog(SortAlgorithm sortAlgorithm, int size, ArrayType type) {
+    	StringBuilder logMsg = new StringBuilder("Calculated performance for ");
     	logMsg.append(sortAlgorithm.getType().getValue());
+    	logMsg.append("for array with " + size + " " + type.toString() + " elements");
     	LOGGER.info(logMsg.toString());
 	}
 
-	private void notifyListeners(Performance performance, ArraySize size, ArrayType type) {
+	private void notifyListeners(Performance performance, int size, ArrayType type) {
 		for (PerformanceListener listener : listeners) {
 			listener.performanceCalculated(performance, size, type);
 		}

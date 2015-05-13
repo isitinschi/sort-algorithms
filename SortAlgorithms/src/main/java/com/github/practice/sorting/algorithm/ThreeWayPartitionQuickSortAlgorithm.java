@@ -3,15 +3,15 @@ package com.github.practice.sorting.algorithm;
 public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 	
 	@Override
-	protected int partition(int[] array, int start, int end) {
-		int pivotIndex = (end + start) / 2;
+	protected int partition(int[] array, int left, int right) {
+		int pivotIndex = (right + left) / 2;
 		int pivotValue = array[pivotIndex];
 		
-		swap(array, start, pivotIndex);
+		swap(array, left, pivotIndex);
 		
-		int lt = start;
-		int gt = end;
-		int i = start + 1;
+		int lt = left;
+		int gt = right;
+		int i = left + 1;
 		while (i <= gt) {
 			if (less(array[i], pivotValue)) {
 				swap(array, lt++, i++);
@@ -22,7 +22,7 @@ public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 			}
 		}
 		
-		return lt;
+		return gt;
 	}
 
 	@Override

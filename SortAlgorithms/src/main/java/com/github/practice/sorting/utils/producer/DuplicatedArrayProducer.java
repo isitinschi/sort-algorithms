@@ -2,25 +2,19 @@ package com.github.practice.sorting.utils.producer;
 
 import java.util.Random;
 
-public class DuplicatedArrayProducer implements ArrayProducer {
-
-    private int size;
+public class DuplicatedArrayProducer extends AbstractArrayProducer {
     
     private static final Random randomGenerator = new Random();
     
-    public DuplicatedArrayProducer(int size) {
-        this.size = size;
-    }
-    
     @Override
-    public int[] produce() {
+    public int[] generate(int size) {
         int [] array = new int [size];
         
         for (int i = 0; i < size; ++i) {
         	int value = randomGenerator.nextInt(size);
         	int num = randomGenerator.nextInt(size / 100) + 10; // 10 <= num < size / 100
-        	for (int j = i; j <= i + num; ++j) {
-        		array[i] = value;        		
+        	for (int j = i; j <= i + num && j < size; ++j) {
+        		array[j] = value;        		
         	}
         	i = i + num;
         }
@@ -31,6 +25,7 @@ public class DuplicatedArrayProducer implements ArrayProducer {
     }
 
 	private void softShuffle(int[] array) {
+		int size = array.length;
 		for (int i = 0; i < size; ++i) {
 			int a1 = randomGenerator.nextInt(size);
 			int a2 = randomGenerator.nextInt(size);

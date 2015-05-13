@@ -1,11 +1,6 @@
 package com.github.practice.sorting.algorithm;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
-	
-	@Autowired
-	private InsertionSortAlgorithm insertionSortAlgorithm;
 	
 	@Override
     protected void doSort(int[] array) {
@@ -13,37 +8,48 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
     }
 	
 	protected void quicksort(int[] array, int left, int right) {
-		if (left - right >= 5) {
+		if (left < right) {
     		DualPivot dualPivot = partition(array, left, right);
-			quicksort(array, left, dualPivot.lPivot - 1);
-			quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);
-			quicksort(array, dualPivot.gPivot + 1, right);
+    		if (dualPivot != null) {
+				quicksort(array, left, dualPivot.lPivot - 1);
+				quicksort(array, dualPivot.gPivot + 1, right);
+				quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);
+    		}
     	}
 	}
 	
 	protected DualPivot partition(int[] array, int left, int right) {
-		int lPivotIndex = left + (right - left) / 3;
-		int lPivotValue = array[lPivotIndex];
-		int gPivotIndex = lPivotIndex + (right - left) / 3;
-		int gPivotValue = array[gPivotIndex];
+		int length = right - left;
+		int third = length / 3;
+		int lPivotIndex = left + third;
+		int gPivotIndex = right - third;
 		
-		if (less(gPivotValue, lPivotValue)) {
+		if (less(array[gPivotIndex], array[lPivotIndex])) {
 			swap(array, lPivotIndex, gPivotIndex);
-			lPivotValue = array[lPivotIndex];
-			gPivotValue = array[gPivotIndex];
-		}
+		}		
 		
 		swap(array, left, lPivotIndex);
 		swap(array, right, gPivotIndex);
+		
+		int lPivotValue = array[left];
+		int gPivotValue = array[right];
 
 		int lt = left + 1;
 		int gt = right - 1;
-		int i = left + 1;
+		int i = lt;
 		while (i <= gt) {
 			if (less(array[i], lPivotValue)) {
 				swap(array, lt++, i++);
 			} else if (less(gPivotValue, array[i])) {
+				while (i < gt && less(gPivotValue, array[gt])) {
+                    --gt;
+                }
+				
 				swap(array, i, gt--);
+				
+				if (less(array[i], lPivotValue)) {
+					swap(array, lt++, i++);
+				}
 			} else {
 				i++;
 			}
@@ -68,11 +74,6 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 	@Override
 	public SortAlgorithmType getType() {
 		return SortAlgorithmType.DUAL_PIVOT_QUICK_SORT;
-	}
-
-	public void setInsertionSortAlgorithm(
-			InsertionSortAlgorithm insertionSortAlgorithm) {
-		this.insertionSortAlgorithm = insertionSortAlgorithm;
 	}
 
 }
