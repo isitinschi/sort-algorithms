@@ -1,5 +1,6 @@
 package com.github.practice.sorting.algorithm;
 
+import com.github.practice.sorting.algorithm.performance.Performance;
 import com.github.practice.sorting.algorithm.performance.PerformanceBuilder;
 
 public abstract class SortAlgorithm {

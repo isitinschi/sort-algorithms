@@ -1,4 +1,6 @@
-package com.github.practice.sorting.algorithm;
+package com.github.practice.sorting.algorithm.performance;
+
+import com.github.practice.sorting.algorithm.SortAlgorithmType;
 
 public class Performance {
 
