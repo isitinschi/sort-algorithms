@@ -15,6 +15,7 @@
     <bean id="threeWayPartitionQuickSortAlgorithm" class="com.github.practice.sorting.algorithm.ThreeWayPartitionQuickSortAlgorithm" />
     <bean id="quickSortAlgorithm" class="com.github.practice.sorting.algorithm.QuickSortAlgorithm" />
     <bean id="mergeSortAlgorithm" class="com.github.practice.sorting.algorithm.MergeSortAlgorithm" />
+    <bean id="bottomUpMergeSortAlgorithm" class="com.github.practice.sorting.algorithm.BottomUpMergeSortAlgorithm" />
     <bean id="insertionSortAlgorithm" class="com.github.practice.sorting.algorithm.InsertionSortAlgorithm" />
     <bean id="selectSortAlgorithm" class="com.github.practice.sorting.algorithm.SelectSortAlgorithm" />
     <bean id="bubbleSortAlgorithm" class="com.github.practice.sorting.algorithm.BubbleSortAlgorithm" />
@@ -27,11 +28,166 @@
 	            <ref bean="dualPivotQuickSortAlgorithm" />
 	            <ref bean="quickSortAlgorithm" />
 	            <ref bean="mergeSortAlgorithm" />
+	            <ref bean="bottomUpMergeSortAlgorithm" />
 	            <ref bean="insertionSortAlgorithm" />
 	            <ref bean="selectSortAlgorithm" />
 	            <ref bean="bubbleSortAlgorithm" />
 	        </list>
 	    </constructor-arg>
+    </bean>
+    
+    <!-- EXPECTED PERFORMANCE -->
+    <bean id="expectedPerformance" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="#{T(com.github.practice.sorting.algorithm.performance.PerformanceType).SWAPS}" value-ref="expectedSwaps" />
+                <entry key="#{T(com.github.practice.sorting.algorithm.performance.PerformanceType).COMPARISONS}" value-ref="expectedComparisons" />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="expectedSwaps" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).ASC}" value-ref="expectedSwapsAsc" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).DESC}" value-ref="expectedSwapsDesc" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).RANDOM}" value-ref="expectedSwapsRandom" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).DUPLICATED}" value-ref="expectedSwapsDuplicated" />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean id="expectedComparisons" class="java.util.HashMap">
+        <constructor-arg>
+            <map>
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).ASC}" value-ref="expectedComparisonsAsc" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).DESC}" value-ref="expectedComparisonsDesc" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).RANDOM}" value-ref="expectedComparisonsRandom" />
+                <entry key="#{T(com.github.practice.sorting.utils.producer.ArrayType).DUPLICATED}" value-ref="expectedComparisonsDuplicated" />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <!-- SWAPS -->
+    <bean name="expectedSwapsAsc" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="0" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="0" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+            </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedSwapsDesc" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedSwapsRandom" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedSwapsDuplicated" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <!-- COMPARISONS -->
+    <bean name="expectedComparisonsAsc" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedComparisonsDesc" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedComparisonsRandom" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	        </map>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="expectedComparisonsDuplicated" class="java.util.HashMap" >
+        <constructor-arg>
+            <map>
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BUBBLE_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N" />
+	        </map>
+        </constructor-arg>
     </bean>
 
 </beans>

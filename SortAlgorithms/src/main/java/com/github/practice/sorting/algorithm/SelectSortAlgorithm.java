@@ -11,9 +11,7 @@ public class SelectSortAlgorithm extends SortAlgorithm {
                     min = j;
                 }
             }
-            if (i != min) {
-            	swap(array, i, min);
-            }
+            swap(array, i, min);
         }
     }
 

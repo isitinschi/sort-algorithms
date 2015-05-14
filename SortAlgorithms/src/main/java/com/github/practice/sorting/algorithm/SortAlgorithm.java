@@ -24,7 +24,7 @@ public abstract class SortAlgorithm {
 	}
 
 	private Performance calculatePerformance() {
-		return PerformanceBuilder.newInstance().setType(getType())
+		return PerformanceBuilder.newInstance().setSortAlgorithmType(getType())
 				.setTime(endTime - startTime).setSwaps(swaps)
 				.setComparisons(comparisons).build();
 	}

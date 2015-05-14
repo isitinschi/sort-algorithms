@@ -4,25 +4,25 @@ import com.github.practice.sorting.algorithm.SortAlgorithmType;
 
 public class Performance {
 
-	private SortAlgorithmType type;
+	private SortAlgorithmType sortAlgorithmType;
 	private long time;
 	private long swaps;
 	private long comparisons;
 	
-	public Performance(SortAlgorithmType type, long time, long swaps, long comparisons) {
+	public Performance(SortAlgorithmType sortAlgorithmType, long time, long swaps, long comparisons) {
 		super();
-		this.type = type;
+		this.sortAlgorithmType = sortAlgorithmType;
 		this.time = time;
 		this.swaps = swaps;
 		this.comparisons = comparisons;
 	}
-	
-	public SortAlgorithmType getType() {
-		return type;
+
+	public SortAlgorithmType getSortAlgorithmType() {
+		return sortAlgorithmType;
 	}
 
-	public void setType(SortAlgorithmType type) {
-		this.type = type;
+	public void setSortAlgorithmType(SortAlgorithmType sortAlgorithmType) {
+		this.sortAlgorithmType = sortAlgorithmType;
 	}
 
 	public long getTime() {

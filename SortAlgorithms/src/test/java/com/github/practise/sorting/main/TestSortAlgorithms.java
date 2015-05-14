@@ -18,7 +18,7 @@ import com.github.practice.sorting.utils.producer.ArrayType;
 @ContextConfiguration("classpath:cfg-ApplicationContext.xml")
 public class TestSortAlgorithms {
 	
-	private static final int ARRAY_SIZE = 1000;
+	private static final int ARRAY_SIZE = 100;
 
 	@Resource
 	private List<SortAlgorithm> sortAlgorithms;
@@ -30,7 +30,8 @@ public class TestSortAlgorithms {
             for (ArrayType type : ArrayType.values()) {
                 int [] array = arrayBuilder.build(type, ARRAY_SIZE);
                 sortAlgorithm.sort(array);
-                Assert.assertTrue("Algorithm " + sortAlgorithm.getType().getValue() + " for array with " + ARRAY_SIZE + " " + type.toString() + " elements " + " is failed!", isSorted(array));
+                String errorMsg = "Algorithm " + sortAlgorithm.getType() + " for array with " + ARRAY_SIZE + " " + type + " elements is failed!";
+                Assert.assertTrue(errorMsg, isSorted(array));
             }
         }
     }

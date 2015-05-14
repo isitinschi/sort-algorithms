@@ -12,11 +12,10 @@ public class ChartController implements PerformanceListener {
 	private PerformancePanel comparisonsPanel = null;
 
 	@Override
-	public void performanceCalculated(Performance performance, ArrayType type) {
-		String key = performance.getType().getValue();
-		timePanel.addData(key, type, performance.getTime());
-		swapsPanel.addData(key, type, performance.getSwaps());
-		comparisonsPanel.addData(key, type, performance.getComparisons());
+	public void performanceCalculated(Performance performance, ArrayType arrayType) {
+		timePanel.addData(performance.getSortAlgorithmType(), arrayType, performance.getTime());
+		swapsPanel.addData(performance.getSortAlgorithmType(), arrayType, performance.getSwaps());
+		comparisonsPanel.addData(performance.getSortAlgorithmType(), arrayType, performance.getComparisons());
 	}
 
 	public void setTimePanel(PerformancePanel timePanel) {

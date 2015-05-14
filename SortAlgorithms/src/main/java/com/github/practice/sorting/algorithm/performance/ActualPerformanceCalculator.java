@@ -1,4 +1,4 @@
-package com.github.practice.sorting.main;
+package com.github.practice.sorting.algorithm.performance;
 
 import java.util.List;
 
@@ -8,19 +8,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.github.practice.sorting.algorithm.SortAlgorithm;
-import com.github.practice.sorting.algorithm.performance.Performance;
 import com.github.practice.sorting.listener.PerformanceListener;
 import com.github.practice.sorting.utils.producer.ArrayBuilder;
 import com.github.practice.sorting.utils.producer.ArrayType;
 
-public class PerformanceCalculator {
+public class ActualPerformanceCalculator {
 	
-	private static final int ARRAY_SIZE = 100000;
+	public static final int ARRAY_SIZE = 100000;
 	
 	private List<SortAlgorithm> sortAlgorithms;	
 	private List<PerformanceListener> listeners;
 	
-	private static final Logger LOGGER = LoggerFactory.getLogger(PerformanceCalculator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(ActualPerformanceCalculator.class);
 
 	@PostConstruct
     public void calculate() {

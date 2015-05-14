@@ -4,7 +4,7 @@ import com.github.practice.sorting.algorithm.SortAlgorithmType;
 
 public class PerformanceBuilder {
 
-	private SortAlgorithmType type;
+	private SortAlgorithmType sortAlgorithmType;
 	private long time;
 	private long swaps;
 	private long comparisons;
@@ -15,8 +15,8 @@ public class PerformanceBuilder {
 		return new PerformanceBuilder();
 	}
 	
-	public PerformanceBuilder setType(SortAlgorithmType type) {
-		this.type = type;
+	public PerformanceBuilder setSortAlgorithmType(SortAlgorithmType sortAlgorithmType) {
+		this.sortAlgorithmType = sortAlgorithmType;
 		return this;
 	}
 	
@@ -36,6 +36,6 @@ public class PerformanceBuilder {
 	}
 
 	public Performance build() {
-		return new Performance(type, time, swaps, comparisons);
+		return new Performance(sortAlgorithmType, time, swaps, comparisons);
 	}
 }

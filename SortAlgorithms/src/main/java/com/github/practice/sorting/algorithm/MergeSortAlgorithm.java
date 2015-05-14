@@ -4,35 +4,37 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 	
     @Override
     protected void doSort(int[] array) {
-        mergeSort(array, 0, array.length);
+    	int [] aux = new int[array.length];
+		for (int i = 0; i < array.length; ++i) {
+			aux[i] = array[i];
+		}
+        mergeSort(array, aux, 0, array.length);
     }
 
-    private void mergeSort(int[] array, int left, int right) {
+    private void mergeSort(int[] array, int[] aux, int left, int right) {
     	if (right - left > 1) {
 			int middle = (right + left) / 2;
-			mergeSort(array, left, middle);
-			mergeSort(array, middle, right);
-			merge(array, left, middle, right);
+			mergeSort(aux, array, left, middle);
+			mergeSort(aux, array, middle, right);
+			if (!less(array[middle], array[middle - 1])) {
+				return; // biggest item in first half <= smallest item in second half
+			}
+			merge(array, aux, left, middle, right);
 		}
 	}
 
-	private void merge(int[] array, int left, int middle, int right) {
-		int [] buffer = new int[right];
-		for (int i = 0; i < right; ++i) {
-			buffer[i] = array[i];
-		}
-		
+	protected void merge(int[] array, int[] aux, int left, int middle, int right) {		
 		int startIndex = left;
 		int middleIndex = middle;
 		for (int i = left; i < right; ++i) {
 			if (startIndex == middle) {
-				array[i] = buffer[middleIndex++];
+				array[i] = aux[middleIndex++];
 			} else if (middleIndex == right) {
-				array[i] = buffer[startIndex++];
-			} else if (less(buffer[startIndex], buffer[middleIndex])) {
-				array[i] = buffer[startIndex++];
+				array[i] = aux[startIndex++];
+			} else if (less(aux[startIndex], aux[middleIndex])) {
+				array[i] = aux[startIndex++];
 			} else {
-				array[i] = buffer[middleIndex++];
+				array[i] = aux[middleIndex++];
 			}
 		}
 	}
