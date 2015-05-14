@@ -23,7 +23,7 @@ public class QuickSortAlgorithm extends SortAlgorithm {
 		int storeIndex = left;
 		
 		for (int i = left; i < right; ++i) {
-			if (!less(pivotValue, array[i])) {
+			if (less(array[i], pivotValue)) {
 				swap(array, i, storeIndex);
 				++storeIndex;
 			}

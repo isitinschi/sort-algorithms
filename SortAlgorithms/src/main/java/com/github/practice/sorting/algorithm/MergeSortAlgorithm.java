@@ -16,9 +16,9 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 			int middle = (right + left) / 2;
 			mergeSort(aux, array, left, middle);
 			mergeSort(aux, array, middle, right);
-			if (!less(array[middle], array[middle - 1])) {
-				return; // biggest item in first half <= smallest item in second half
-			}
+//			if (!less(aux[middle], aux[middle - 1])) {
+//				return; // biggest item in first half <= smallest item in second half
+//			}
 			merge(array, aux, left, middle, right);
 		}
 	}

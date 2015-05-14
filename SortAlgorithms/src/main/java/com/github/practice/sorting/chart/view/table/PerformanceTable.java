@@ -96,12 +96,15 @@ public class PerformanceTable extends JPanel {
 	}
 	
 	public void addData(SortAlgorithmType sortAlgorithmType, ArrayType arrayType, long value) {
-		for (int i = 0; i < sortAlgorithms.size(); ++i) {
+		boolean found = false;
+		for (int i = 0; !found && i < sortAlgorithms.size(); ++i) {
 			if (sortAlgorithms.get(i).getType().equals(sortAlgorithmType)) {
 				int columnIndex = hasExpectedColumn ? 2 : 1;
 				for (ArrayType type : ArrayType.values()) {
 					if (type.equals(arrayType)) {
 						table.getModel().setValueAt(value, i, columnIndex);
+						found = true;
+						break;
 					}
 					columnIndex += hasExpectedColumn ? 2 : 1;
 				}

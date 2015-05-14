@@ -18,7 +18,7 @@ public abstract class AbstractArrayProducer {
     		arrayCache.put(size, array);
     	}
     	
-    	return array;
+    	return array.clone();
     }
     
     protected abstract int [] generate(int size);
