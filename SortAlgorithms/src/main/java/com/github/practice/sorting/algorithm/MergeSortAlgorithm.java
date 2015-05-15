@@ -16,14 +16,20 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 			int middle = (right + left) / 2;
 			mergeSort(aux, array, left, middle);
 			mergeSort(aux, array, middle, right);
-//			if (!less(aux[middle], aux[middle - 1])) {
-//				return; // biggest item in first half <= smallest item in second half
-//			}
 			merge(array, aux, left, middle, right);
 		}
 	}
 
-	protected void merge(int[] array, int[] aux, int left, int middle, int right) {		
+	protected void merge(int[] array, int[] aux, int left, int middle, int right) {
+		if (!less(aux[middle], aux[middle - 1])) {
+			// biggest item in first half <= smallest item in second half
+			// just copy
+			for (int i = left; i < right; ++i) {
+				array[i] = aux[i];
+			}
+			return;
+		}
+		
 		int startIndex = left;
 		int middleIndex = middle;
 		for (int i = left; i < right; ++i) {

@@ -7,15 +7,19 @@ public class QuickSortAlgorithm extends SortAlgorithm {
         quicksort(array, 0, array.length - 1);
     }
 
-    protected void quicksort(int[] array, int left, int right) {
+    private void quicksort(int[] array, int left, int right) {
     	if (left < right) {
 			int pivot = partition(array, left, right);
-			quicksort(array, left, pivot - 1);
-			quicksort(array, pivot + 1, right);
+			if (left < pivot - 1) {
+				quicksort(array, left, pivot - 1);
+			}
+			if (pivot + 1 < right) {
+				quicksort(array, pivot + 1, right);
+			}
     	}
 	}
 
-	protected int partition(int[] array, int left, int right) {
+	private int partition(int[] array, int left, int right) {
 		int pivotIndex = (right + left) / 2;
 		int pivotValue = array[pivotIndex];
 		

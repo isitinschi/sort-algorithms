@@ -29,9 +29,9 @@
 	            <ref bean="quickSortAlgorithm" />
 	            <ref bean="mergeSortAlgorithm" />
 	            <ref bean="bottomUpMergeSortAlgorithm" />
-	            <ref bean="insertionSortAlgorithm" />
-	            <ref bean="selectSortAlgorithm" />
-	            <ref bean="bubbleSortAlgorithm" />
+<!-- 	            <ref bean="insertionSortAlgorithm" /> -->
+<!-- 	            <ref bean="selectSortAlgorithm" /> -->
+<!-- 	            <ref bean="bubbleSortAlgorithm" /> -->
 	        </list>
 	    </constructor-arg>
     </bean>

@@ -6,7 +6,7 @@ public class BottomUpMergeSortAlgorithm extends MergeSortAlgorithm {
 	protected void doSort(int[] array) {
 		int N = array.length;
 		int[] aux = new int[N];
-		for (int sz = 1; sz < N; sz = sz + sz) {
+		for (int sz = 2; sz < N; sz = sz + sz) {
 			for (int lo = 0; lo < N - sz; lo += sz + sz) {
 				merge(array, aux, lo, lo + sz - 1,
 						Math.min(lo + sz + sz - 1, N - 1));

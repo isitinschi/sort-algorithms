@@ -10,10 +10,9 @@ public class ExpectedPerformanceCalculator {
 	private Map<PerformanceType, Map<ArrayType, Map<SortAlgorithmType, String>>> expectedPerformance;
 
 	public String calculateFor(PerformanceType performanceType, ArrayType arrayType, SortAlgorithmType sortAlgorithmType, int arraySize) {
-		Map<SortAlgorithmType, String> sortAlgorithmPerformanceMap = expectedPerformance.get(performanceType).get(arrayType);
-		String value = "—";
-		if (sortAlgorithmPerformanceMap != null) {
-			value = expectedPerformance.get(performanceType).get(arrayType).get(sortAlgorithmType);			
+		String value = expectedPerformance.get(performanceType).get(arrayType).get(sortAlgorithmType);
+		if (value == null) {
+			value = "—";			
 		}
 		return value;
 	}

@@ -11,9 +11,9 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 		if (left < right) {
     		DualPivot dualPivot = partition(array, left, right);
     		if (dualPivot != null) {
-				quicksort(array, left, dualPivot.lPivot - 1);
+    			quicksort(array, left, dualPivot.lPivot - 1);
 				quicksort(array, dualPivot.gPivot + 1, right);
-				quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);
+				quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);		
     		}
     	}
 	}
@@ -40,16 +40,8 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
 		while (i <= gt) {
 			if (less(array[i], lPivotValue)) {
 				swap(array, lt++, i++);
-			} else if (less(gPivotValue, array[i])) {
-				while (i < gt && less(gPivotValue, array[gt])) {
-                    --gt;
-                }
-				
+			} else if (less(gPivotValue, array[i])) {				
 				swap(array, i, gt--);
-				
-				if (less(array[i], lPivotValue)) {
-					swap(array, lt++, i++);
-				}
 			} else {
 				i++;
 			}

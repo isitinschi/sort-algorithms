@@ -1,9 +1,21 @@
 package com.github.practice.sorting.algorithm;
 
-public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
+public class ThreeWayPartitionQuickSortAlgorithm extends SortAlgorithm {
 	
 	@Override
-	protected int partition(int[] array, int left, int right) {
+    protected void doSort(int[] array) {
+        quicksort(array, 0, array.length - 1);
+    }
+
+    private void quicksort(int[] array, int left, int right) {
+    	if (left < right) {
+    		DualPivot dualPivot = partition(array, left, right);
+			quicksort(array, left, dualPivot.lPivot - 1);
+			quicksort(array, dualPivot.gPivot + 1, right);
+    	}
+	}
+	
+	private DualPivot partition(int[] array, int left, int right) {
 		int pivotIndex = (right + left) / 2;
 		int pivotValue = array[pivotIndex];
 		
@@ -14,7 +26,7 @@ public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 		int i = left + 1;
 		while (i <= gt) {
 			if (less(array[i], pivotValue)) {
-				swap(array, lt++, i++);
+				swap(array, i++, lt++);
 			} else if (less(pivotValue, array[i])) {
 				swap(array, i, gt--);
 			} else {
@@ -22,7 +34,18 @@ public class ThreeWayPartitionQuickSortAlgorithm extends QuickSortAlgorithm {
 			}
 		}
 		
-		return gt;
+		return new DualPivot(lt, gt);
+	}
+	
+	private class DualPivot {
+		private int lPivot;
+		private int gPivot;
+		
+		public DualPivot(int lPivot, int gPivot) {
+			super();
+			this.lPivot = lPivot;
+			this.gPivot = gPivot;
+		}		
 	}
 
 	@Override
