@@ -23,10 +23,10 @@
     <bean id="sortAlgorithms" class="java.util.ArrayList">
 	    <constructor-arg>
 	        <list>
-	            <ref bean="heapSortAlgorithm" />
-                <ref bean="threeWayPartitionQuickSortAlgorithm" />
 	            <ref bean="dualPivotQuickSortAlgorithm" />
+                <ref bean="threeWayPartitionQuickSortAlgorithm" />
 	            <ref bean="quickSortAlgorithm" />
+	            <ref bean="heapSortAlgorithm" />
 	            <ref bean="mergeSortAlgorithm" />
 	            <ref bean="bottomUpMergeSortAlgorithm" />
 <!-- 	            <ref bean="insertionSortAlgorithm" /> -->
@@ -79,6 +79,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
             </map>
         </constructor-arg>
     </bean>
@@ -93,6 +95,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	        </map>
         </constructor-arg>
     </bean>
@@ -107,6 +111,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	        </map>
         </constructor-arg>
     </bean>
@@ -121,6 +127,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	        </map>
         </constructor-arg>
     </bean>
@@ -133,8 +141,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
@@ -149,8 +157,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
@@ -165,8 +173,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N lg N" />
@@ -181,8 +189,8 @@
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).DUAL_PIVOT_QUICK_SORT}" value="N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).HEAP_SORT}" value="N + N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).INSERTION_SORT}" value="N^2" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT_ALGORITHM}" value="N lg N" />
-	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT_ALGORITHM}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).MERGE_SORT}" value="N lg N" />
+	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).BOTTOM_UP_MERGE_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).QUICK_SORT}" value="N lg N" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).SELECT_SORT}" value="N^2" />
 	            <entry key="#{T(com.github.practice.sorting.algorithm.SortAlgorithmType).THREE_WAY_PARTITION_QUICK_SORT}" value="N" />

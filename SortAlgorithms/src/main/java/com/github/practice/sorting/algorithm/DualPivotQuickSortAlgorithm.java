@@ -13,7 +13,9 @@ public class DualPivotQuickSortAlgorithm extends SortAlgorithm {
     		if (dualPivot != null) {
     			quicksort(array, left, dualPivot.lPivot - 1);
 				quicksort(array, dualPivot.gPivot + 1, right);
-				quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);		
+				if (less(array[dualPivot.lPivot], array[dualPivot.gPivot])) {
+					quicksort(array, dualPivot.lPivot + 1, dualPivot.gPivot - 1);		
+				}
     		}
     	}
 	}

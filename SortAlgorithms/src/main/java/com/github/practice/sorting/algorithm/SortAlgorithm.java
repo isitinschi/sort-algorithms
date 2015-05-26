@@ -16,9 +16,9 @@ public abstract class SortAlgorithm {
 
 	public Performance sort(int[] array) {
 		startTime = endTime = swaps = comparisons = 0;
-		startTime = System.currentTimeMillis();
+		startTime = System.nanoTime();
 		doSort(array);
-		endTime = System.currentTimeMillis();
+		endTime = System.nanoTime();
 
 		return calculatePerformance();
 	}
@@ -33,6 +33,11 @@ public abstract class SortAlgorithm {
 		int temp = array[i];
 		array[i] = array[j];
 		array[j] = temp;
+		++swaps;
+	}
+	
+	protected void swapLeft(int[] array1, int i, int[] array2, int j) {
+		array1[i] = array2[j];
 		++swaps;
 	}
 

@@ -6,7 +6,7 @@ public class MergeSortAlgorithm extends SortAlgorithm {
     protected void doSort(int[] array) {
     	int [] aux = new int[array.length];
 		for (int i = 0; i < array.length; ++i) {
-			aux[i] = array[i];
+			swapLeft(aux, i, array, i);
 		}
         mergeSort(array, aux, 0, array.length);
     }
@@ -21,11 +21,11 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 	}
 
 	protected void merge(int[] array, int[] aux, int left, int middle, int right) {
-		if (!less(aux[middle], aux[middle - 1])) {
+		if (middle != left && !less(aux[middle], aux[middle - 1])) {
 			// biggest item in first half <= smallest item in second half
 			// just copy
 			for (int i = left; i < right; ++i) {
-				array[i] = aux[i];
+				swapLeft(array, i, aux, i);
 			}
 			return;
 		}
@@ -34,20 +34,20 @@ public class MergeSortAlgorithm extends SortAlgorithm {
 		int middleIndex = middle;
 		for (int i = left; i < right; ++i) {
 			if (startIndex == middle) {
-				array[i] = aux[middleIndex++];
+				swapLeft(array, i, aux, middleIndex++);
 			} else if (middleIndex == right) {
-				array[i] = aux[startIndex++];
+				swapLeft(array, i, aux, startIndex++);
 			} else if (less(aux[startIndex], aux[middleIndex])) {
-				array[i] = aux[startIndex++];
+				swapLeft(array, i, aux, startIndex++);
 			} else {
-				array[i] = aux[middleIndex++];
+				swapLeft(array, i, aux, middleIndex++);
 			}
 		}
 	}
 
 	@Override
     public SortAlgorithmType getType() {
-        return SortAlgorithmType.MERGE_SORT_ALGORITHM;
+        return SortAlgorithmType.MERGE_SORT;
     }
 
 }
