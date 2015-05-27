@@ -20,6 +20,7 @@ Tested performance parameters are:
   
   **Without** quadratic algorithms:
   
+  **Time** performance
   ![alt tag](https://raw.githubusercontent.com/java-fan/sort-algorithms/master/screenshots/time.jpg)
   
   ![alt tag](https://raw.githubusercontent.com/java-fan/sort-algorithms/master/screenshots/swaps.jpg)
